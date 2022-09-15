@@ -1,14 +1,9 @@
-# This is a sample Python script.
-
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 import requests
 from jsonpath import jsonpath
 import stylecloud
 from PIL import Image
 import re
 import jieba
-
 
 def combine_list(path):
     list1= read_as_list("bp_clean_comment_list1.txt")
@@ -25,13 +20,11 @@ def read_as_list(path):
         comment = f.read()
     return comment.split("\n")
 
-
 def save_list(cmt_list, path):
     with open(path, 'w') as f:
         for cmt in cmt_list:
             f.write(cmt + "\n")
     return True
-
 
 def parse_cy_img(comment_list):
     print("--------词云图生成中--------")
@@ -40,7 +33,6 @@ def parse_cy_img(comment_list):
     img = Image.open("./stylecloud.png")
     img.show()
     print("词云图已生成")
-
 
 def worm():
     it = 188
@@ -69,7 +61,6 @@ def worm():
     save_list(comment_list, "bp_comment_list4.txt")
     #parse_cy_img(comment_list)
 
-
 def get_indexs(my_str, tar):
     str_indexs = []
     it = 0
@@ -81,7 +72,6 @@ def get_indexs(my_str, tar):
             break
         str_indexs.append(nxt_ind)
     return str_indexs
-
 
 def data_cleaning(file_path):
     comment_list = read_as_list(file_path)
@@ -96,8 +86,6 @@ def data_cleaning(file_path):
                 comment_list[i] = comment_list[i][:std_it] + comment_list[i][end_it+1:]
             except:
                 print(comment_list[i])
-
-
 
     # 去除emoji
     for i in range(len(comment_list)):
@@ -134,7 +122,6 @@ def data_cleaning(file_path):
 def test(comment_list):
     for comment in comment_list:
         print(comment)
-
 
 
 if __name__ == "__main__":
